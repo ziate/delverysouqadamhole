@@ -1,0 +1,162 @@
+{
+  "project_info": {
+    "project_number": "1082972567264",
+    "project_id": "adammultivendor",
+    "storage_bucket": "adammultivendor.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1082972567264:android:71ca6a6f1198a831748285",
+        "android_client_info": {
+          "package_name": "com.adamvendor.tgar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1082972567264-aj86fpl7pe6l5d9hm38nlc59t9iboprp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8Al3d81c6IHk2GKHfuFqNYWXQObwHRsI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1082972567264-1na7ato1kkcvsald420v4l82u2k6humj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1082972567264-uvgv13agrteum16i977mhoi6ihj2ilml.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.souqadam.vendor"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1082972567264:android:92f05920db17a64b748285",
+        "android_client_info": {
+          "package_name": "com.souqadam.delvery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1082972567264-aj86fpl7pe6l5d9hm38nlc59t9iboprp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8Al3d81c6IHk2GKHfuFqNYWXQObwHRsI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1082972567264-1na7ato1kkcvsald420v4l82u2k6humj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1082972567264-uvgv13agrteum16i977mhoi6ihj2ilml.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.souqadam.vendor"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1082972567264:android:998ff504fa1827db748285",
+        "android_client_info": {
+          "package_name": "com.souqadam.delverymans"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1082972567264-aj86fpl7pe6l5d9hm38nlc59t9iboprp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8Al3d81c6IHk2GKHfuFqNYWXQObwHRsI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1082972567264-1na7ato1kkcvsald420v4l82u2k6humj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1082972567264-uvgv13agrteum16i977mhoi6ihj2ilml.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.souqadam.vendor"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1082972567264:android:9199df42458e3945748285",
+        "android_client_info": {
+          "package_name": "com.souqadam.vendor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1082972567264-fqhrs6lmcohs431v3fjsn2si0ocm22lv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.souqadam.vendor",
+            "certificate_hash": "8abd8908cd40dbd278b2232b5862d0cee28cadc6"
+          }
+        },
+        {
+          "client_id": "1082972567264-aj86fpl7pe6l5d9hm38nlc59t9iboprp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8Al3d81c6IHk2GKHfuFqNYWXQObwHRsI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1082972567264-1na7ato1kkcvsald420v4l82u2k6humj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1082972567264-uvgv13agrteum16i977mhoi6ihj2ilml.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.souqadam.vendor"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
