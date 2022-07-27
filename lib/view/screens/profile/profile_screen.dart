@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sixvalley_delivery_boy/controller/auth_controller.dart';
 import 'package:sixvalley_delivery_boy/controller/splash_controller.dart';
+import 'package:sixvalley_delivery_boy/data/http/utills/fund.dart';
 import 'package:sixvalley_delivery_boy/utill/color_resources.dart';
 import 'package:sixvalley_delivery_boy/utill/dimensions.dart';
 import 'package:sixvalley_delivery_boy/utill/images.dart';
@@ -131,7 +132,9 @@ class ProfileScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            onTap: () {},
+                            onTap: () {
+                              fund();
+                            },
                           ),
                           ProfileButton(
                               icon: Icons.privacy_tip,
