@@ -8,6 +8,7 @@ import 'package:sixvalley_delivery_boy/theme/dark_theme.dart';
 import 'package:sixvalley_delivery_boy/theme/light_theme.dart';
 import 'package:sixvalley_delivery_boy/utill/app_constants.dart';
 import 'package:sixvalley_delivery_boy/utill/messages.dart';
+import 'package:sixvalley_delivery_boy/view/screens/auth/login_screen.dart';
 import 'package:sixvalley_delivery_boy/view/screens/splash/splash_screen.dart';
 import 'controller/localization_controller.dart';
 import 'controller/splash_controller.dart';
@@ -16,7 +17,8 @@ import 'helper/get_di.dart' as di;
 import 'package:url_strategy/url_strategy.dart';
 import 'helper/notification_helper.dart';
 
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
 
 Future<void> main() async {
   setPathUrlStrategy();
@@ -28,7 +30,7 @@ Future<void> main() async {
       await NotificationHelper.initialize(flutterLocalNotificationsPlugin);
       FirebaseMessaging.onBackgroundMessage(myBackgroundMessageHandler);
     }
-  }catch(e) {
+  } catch (e) {
     debugPrint('');
   }
   runApp(MyApp(languages: _languages));
@@ -42,14 +44,15 @@ class MyApp extends StatelessWidget {
     return GetBuilder<ThemeController>(builder: (themeController) {
       return GetBuilder<LocalizationController>(builder: (localizeController) {
         return GetBuilder<SplashController>(builder: (splashController) {
-          return  GetMaterialApp(
+          return GetMaterialApp(
             title: AppConstants.appName,
             debugShowCheckedModeBanner: false,
             navigatorKey: Get.key,
             theme: themeController.darkTheme ? dark : light,
             locale: localizeController.locale,
             translations: Messages(languages: languages),
-            fallbackLocale: Locale(AppConstants.languages[0].languageCode, AppConstants.languages[0].countryCode),
+            fallbackLocale: Locale(AppConstants.languages[0].languageCode,
+                AppConstants.languages[0].countryCode),
             // ignore: prefer_const_constructors
             home: SplashScreen(),
             defaultTransition: Transition.topLevel,
