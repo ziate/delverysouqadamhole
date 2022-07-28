@@ -62,8 +62,11 @@ class OrderDetailsScreen extends StatelessWidget {
           double _tax = 0;
           if (orderController.orderDetails != null) {
             for (var orderDetails in orderController.orderDetails) {
-              _itemsPrice =
-                  _itemsPrice + (orderDetails.price * orderDetails.qty);
+              _itemsPrice = orderDetails.isPiece == 1
+                  ? (_itemsPrice + orderDetails.price * orderDetails.qty)
+                  : _itemsPrice +
+                      (orderDetails.price * orderDetails.qty) /
+                          orderDetails.qountPieceInKr;
               _discount = _discount + orderDetails.discount;
               _tax = _tax + orderDetails.tax;
             }
@@ -222,9 +225,6 @@ class OrderDetailsScreen extends StatelessWidget {
                                         ],
                                       ),
                                     ],
-
-                                    // title:
-                                    // trailing:
                                   ),
                                   const SizedBox(
                                       height: Dimensions.paddingSizeDefault),
@@ -335,7 +335,7 @@ class OrderDetailsScreen extends StatelessWidget {
                                                           TextOverflow.ellipsis,
                                                     ),
                                                   ),
-                                                  Text('amount'.tr,
+                                                  Text('price'.tr,
                                                       style: rubikRegular.copyWith(
                                                           color: Theme.of(
                                                                   context)
@@ -359,7 +359,7 @@ class OrderDetailsScreen extends StatelessWidget {
                                                                         context)
                                                                     .highlightColor)),
                                                         Text(
-                                                            ' ${orderController.orderDetails[index].qty}',
+                                                            ' ${orderController.orderDetails[index].qty / orderController.orderDetails[index].qountPieceInKr}',
                                                             style: rubikMedium.copyWith(
                                                                 color: Theme.of(
                                                                         context)
@@ -384,7 +384,7 @@ class OrderDetailsScreen extends StatelessWidget {
                                                   height: Dimensions
                                                       .paddingSizeSmall),
                                               Text(
-                                                ' ${orderController.orderDetails[index].variant}',
+                                                ' ${orderController.orderDetails[index].variant} ',
                                                 style: rubikMedium.copyWith(),
                                               ),
                                             ]),

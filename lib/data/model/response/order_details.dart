@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:sixvalley_delivery_boy/data/model/response/product_model.dart';
 
 class OrderDetailsModel {
@@ -16,26 +18,30 @@ class OrderDetailsModel {
   String _updatedAt;
   int _shippingMethodId;
   String _variant;
+  int _isPiece;
+  int _qountPieceInKr;
   //List<Variation> _variation;
 
-  OrderDetailsModel(
-      {int id,
-        int orderId,
-        int productId,
-        int sellerId,
-        Product productDetails,
-        int qty,
-        double price,
-        double tax,
-        double discount,
-        String deliveryStatus,
-        String paymentStatus,
-        String createdAt,
-        String updatedAt,
-        int shippingMethodId,
-        String variant,
-        //List<Variation> variation
-      }) {
+  OrderDetailsModel({
+    int id,
+    int orderId,
+    int productId,
+    int sellerId,
+    Product productDetails,
+    int qty,
+    double price,
+    double tax,
+    double discount,
+    String deliveryStatus,
+    String paymentStatus,
+    String createdAt,
+    String updatedAt,
+    int shippingMethodId,
+    String variant,
+    int isPiece,
+    int qountPieceInKr,
+    //List<Variation> variation
+  }) {
     _id = id;
     _orderId = orderId;
     _productId = productId;
@@ -51,6 +57,9 @@ class OrderDetailsModel {
     _updatedAt = updatedAt;
     _shippingMethodId = shippingMethodId;
     _variant = variant;
+    _isPiece = isPiece;
+    _qountPieceInKr = qountPieceInKr;
+
     //this._variation = variation;
   }
 
@@ -69,6 +78,8 @@ class OrderDetailsModel {
   String get updatedAt => _updatedAt;
   int get shippingMethodId => _shippingMethodId;
   String get variant => _variant;
+  int get isPiece => _isPiece;
+  int get qountPieceInKr => _qountPieceInKr;
   //List<Variation> get variation => _variation;
 
   OrderDetailsModel.fromJson(Map<String, dynamic> json) {
@@ -76,7 +87,7 @@ class OrderDetailsModel {
     _orderId = json['order_id'];
     _productId = json['product_id'];
     _sellerId = json['seller_id'];
-    if(json['product_details'] != null) {
+    if (json['product_details'] != null) {
       _productDetails = Product.fromJson(json['product_details']);
     }
     _qty = json['qty'];
@@ -89,6 +100,10 @@ class OrderDetailsModel {
     _updatedAt = json['updated_at'];
     _shippingMethodId = json['shipping_method_id'];
     _variant = json['variant'];
+    _isPiece = json['is_piece'];
+    _qountPieceInKr = json['count_piece_in_kr'];
+
+    log(json.toString());
     /*if (json['variation'] != null) {
       _variation = [];
       json['variation'].forEach((v) {
@@ -103,7 +118,7 @@ class OrderDetailsModel {
     data['order_id'] = _orderId;
     data['product_id'] = _productId;
     data['seller_id'] = _sellerId;
-    if(_productDetails != null) {
+    if (_productDetails != null) {
       data['product_details'] = _productDetails.toJson();
     }
     data['qty'] = _qty;
@@ -116,6 +131,8 @@ class OrderDetailsModel {
     data['updated_at'] = _updatedAt;
     data['shipping_method_id'] = _shippingMethodId;
     data['variant'] = _variant;
+    data['count_piece_in_kr'] = _qountPieceInKr;
+    data['is_piece'] = _isPiece;
     /*if (this._variation != null) {
       data['variation'] = this._variation.map((v) => v.toJson()).toList();
     }*/

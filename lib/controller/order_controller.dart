@@ -21,13 +21,16 @@ class OrderController extends GetxController implements GetxService {
   Future getAllOrders(BuildContext context) async {
     _isLoading = true;
     Response response = await orderRepo.getAllOrders();
-    if (response.body != null && response.body != {} && response.statusCode == 200) {
+    if (response.body != null &&
+        response.body != {} &&
+        response.statusCode == 200) {
       _currentOrders = [];
       _currentOrdersReverse = [];
-      response.body.forEach((order) {_currentOrdersReverse.add(OrderModel.fromJson(order));});
+      response.body.forEach((order) {
+        _currentOrdersReverse.add(OrderModel.fromJson(order));
+      });
       _currentOrders = List.from(_currentOrdersReverse.reversed);
       _isLoading = false;
-
     } else {
       ApiChecker.checkApi(response);
       _isLoading = false;
@@ -43,19 +46,25 @@ class OrderController extends GetxController implements GetxService {
 
   List<OrderDetailsModel> get orderDetails => _orderDetails;
 
-  Future<List<OrderDetailsModel>> getOrderDetails(String orderID, BuildContext context) async {
+  Future<List<OrderDetailsModel>> getOrderDetails(
+      String orderID, BuildContext context) async {
     _orderDetails = null;
     _isLoading = true;
     Response response = await orderRepo.getOrderDetails(orderID: orderID);
     if (response.body != null && response.statusCode == 200) {
       _orderDetails = [];
-      response.body.forEach((orderDetail) => _orderDetails.add(OrderDetailsModel.fromJson(orderDetail)));
+      response.body.forEach(
+        (orderDetail) => _orderDetails.add(
+          OrderDetailsModel.fromJson(orderDetail),
+        ),
+      );
       _isLoading = false;
     } else {
-      ApiChecker.checkApi( response);
+      ApiChecker.checkApi(response);
       _isLoading = false;
     }
     update();
+    // print(_orderDetails);
     return _orderDetails;
   }
 
@@ -66,7 +75,6 @@ class OrderController extends GetxController implements GetxService {
   List<OrderModel> get allOrderHistory => _allOrderHistory;
 
   Future getAllOrderHistory(BuildContext context) async {
-
     Response response = await orderRepo.getAllOrderHistory();
     if (response.body != null && response.statusCode == 200) {
       _allOrderHistory = [];
@@ -80,7 +88,6 @@ class OrderController extends GetxController implements GetxService {
     }
     update();
   }
-
 
   // Future<List<OrderModel>> getOrderHistory(BuildContext context) async {
   //   Response response = await orderRepo.getAllOrderHistory();
@@ -105,18 +112,20 @@ class OrderController extends GetxController implements GetxService {
 
   String get feedbackMessage => _feedbackMessage;
 
-  Future<bool> updateOrderStatus({int orderId, String status,BuildContext context}) async {
+  Future<bool> updateOrderStatus(
+      {int orderId, String status, BuildContext context}) async {
     _isLoading = true;
     update();
-    Response response = await orderRepo.updateOrderStatus(orderId: orderId, status: status);
+    Response response =
+        await orderRepo.updateOrderStatus(orderId: orderId, status: status);
     Get.back();
     bool _isSuccess;
-    if(response.body != null && response.statusCode == 200) {
+    if (response.body != null && response.statusCode == 200) {
       // _currentOrders[index].orderStatus = status;
       showCustomSnackBar(response.body['message'], isError: false);
       _isSuccess = true;
       getAllOrders(context);
-    }else {
+    } else {
       ApiChecker.checkApi(response);
       _isSuccess = false;
     }
@@ -127,17 +136,17 @@ class OrderController extends GetxController implements GetxService {
   }
 
   Future updatePaymentStatus({int orderId, String status}) async {
-    Response apiResponse = await orderRepo.updatePaymentStatus(orderId: orderId, status: status);
+    Response apiResponse =
+        await orderRepo.updatePaymentStatus(orderId: orderId, status: status);
 
     if (apiResponse.statusCode == 200) {
-
     } else {
-     ApiChecker.checkApi(apiResponse);
+      ApiChecker.checkApi(apiResponse);
     }
     update();
   }
 
-  Future orderRefresh(BuildContext context) async{
+  Future orderRefresh(BuildContext context) async {
     getAllOrders(context);
     return getAllOrders(context);
   }
