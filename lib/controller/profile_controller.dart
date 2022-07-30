@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sixvalley_delivery_boy/data/api/api_checker.dart';
@@ -10,20 +9,22 @@ class ProfileController extends GetxController implements GetxService {
 
   ProfileController({@required this.profileRepo});
 
-
   UserInfoModel _userInfoModel;
 
   UserInfoModel get userInfoModel => _userInfoModel;
+  double get wallet => _wallet;
+
+  double _wallet;
 
   getUserInfo(BuildContext context) async {
     Response _response = await profileRepo.getUserInfo();
     if (_response.statusCode == 200) {
       _userInfoModel = UserInfoModel.fromJson(_response.body);
+      // ------------------------ get walllet ------------------
+
     } else {
       ApiChecker.checkApi(_response);
     }
     update();
   }
-
-
 }

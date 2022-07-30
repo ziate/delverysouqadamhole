@@ -11,20 +11,22 @@ class UserInfoModel {
   int isActive;
   String createdAt;
   String updatedAt;
+  int wallet;
 
   UserInfoModel(
       {this.id,
-        this.fName,
-        this.lName,
-        this.phone,
-        this.email,
-        this.identityNumber,
-        this.identityType,
-        this.identityImage,
-        this.image,
-        this.isActive,
-        this.createdAt,
-        this.updatedAt});
+      this.fName,
+      this.lName,
+      this.phone,
+      this.email,
+      this.identityNumber,
+      this.identityType,
+      this.identityImage,
+      this.image,
+      this.isActive,
+      this.createdAt,
+      this.updatedAt,
+      this.wallet});
 
   UserInfoModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -39,6 +41,7 @@ class UserInfoModel {
     isActive = json['is_active'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
+    wallet = json['wallet'];
   }
 
   Map<String, dynamic> toJson() {
@@ -55,6 +58,7 @@ class UserInfoModel {
     data['is_active'] = isActive;
     data['created_at'] = createdAt;
     data['updated_at'] = updatedAt;
+    data['wallet'] = wallet;
     return data;
   }
 }

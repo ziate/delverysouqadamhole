@@ -11,7 +11,7 @@ import 'package:sixvalley_delivery_boy/view/screens/profile/profile_screen.dart'
 
 class DashboardScreen extends StatefulWidget {
   final int pageIndex;
-   const DashboardScreen({Key key, @required this.pageIndex}) : super(key: key);
+  const DashboardScreen({Key key, @required this.pageIndex}) : super(key: key);
   @override
   _DashboardScreenState createState() => _DashboardScreenState();
 }
@@ -29,19 +29,21 @@ class _DashboardScreenState extends State<DashboardScreen> {
     _screens = [
       HomeScreen(),
       OrderHistoryScreen(),
-      const ProfileScreen(),
+      ProfileScreen(),
     ];
 
-
-    var androidInitialize = const AndroidInitializationSettings('notification_icon');
+    var androidInitialize =
+        const AndroidInitializationSettings('notification_icon');
     var iOSInitialize = const IOSInitializationSettings();
-    var initializationsSettings = InitializationSettings(android: androidInitialize, iOS: iOSInitialize);
+    var initializationsSettings =
+        InitializationSettings(android: androidInitialize, iOS: iOSInitialize);
     flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
     flutterLocalNotificationsPlugin.initialize(initializationsSettings);
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       debugPrint("onMessage: ${message.data}");
-      NotificationHelper.showNotification(message, flutterLocalNotificationsPlugin, false);
+      NotificationHelper.showNotification(
+          message, flutterLocalNotificationsPlugin, false);
       Get.find<OrderController>().getAllOrders(context);
       Get.find<OrderController>().getAllOrderHistory(context);
     });
@@ -51,7 +53,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
       Get.find<OrderController>().getAllOrders(context);
       Get.find<OrderController>().getAllOrderHistory(context);
     });
-
   }
 
   @override
@@ -96,7 +97,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   BottomNavigationBarItem _barItem(IconData icon, String label, int index) {
     return BottomNavigationBarItem(
-      icon: Icon(icon, color: index == _pageIndex ? Theme.of(context).primaryColor : ColorResources.colorGrey, size: 20),
+      icon: Icon(icon,
+          color: index == _pageIndex
+              ? Theme.of(context).primaryColor
+              : ColorResources.colorGrey,
+          size: 20),
       label: label,
     );
   }

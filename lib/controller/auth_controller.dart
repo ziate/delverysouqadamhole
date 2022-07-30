@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -11,7 +12,7 @@ import 'package:sixvalley_delivery_boy/view/base/custom_snackbar.dart';
 
 class AuthController extends GetxController implements GetxService {
   final AuthRepo authRepo;
-  AuthController({@required this.authRepo}) ;
+  AuthController({@required this.authRepo});
 
   bool _isLoading = false;
   final bool _notification = true;
@@ -20,7 +21,6 @@ class AuthController extends GetxController implements GetxService {
   // for login section
   final String _loginErrorMessage = '';
   String get loginErrorMessage => _loginErrorMessage;
-
 
   bool get isLoading => _isLoading;
   bool get notification => _notification;
@@ -31,6 +31,7 @@ class AuthController extends GetxController implements GetxService {
     _isLoading = true;
     update();
     Response response = await authRepo.login(email, password);
+    log(response.toString());
     ResponseModel responseModel;
     if (response.statusCode == 200) {
       authRepo.saveUserToken(response.body['token']);
@@ -49,25 +50,25 @@ class AuthController extends GetxController implements GetxService {
     Response response = await authRepo.getProfileInfo();
     if (response.statusCode == 200) {
       _profileModel = UserInfoModel.fromJson(response.body);
-
+      log(_profileModel.toString());
     } else {
       ApiChecker.checkApi(response);
     }
     update();
   }
 
-
-
   void pickImage() async {
     _pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
     update();
   }
 
-  Future<bool> changePassword(ProfileModel updatedUserModel, String password) async {
+  Future<bool> changePassword(
+      ProfileModel updatedUserModel, String password) async {
     _isLoading = true;
     update();
     bool _isSuccess;
-    Response response = await authRepo.changePassword(updatedUserModel, password);
+    Response response =
+        await authRepo.changePassword(updatedUserModel, password);
     _isLoading = false;
     if (response.statusCode == 200) {
       String message = response.body["message"];
@@ -81,11 +82,9 @@ class AuthController extends GetxController implements GetxService {
     return _isSuccess;
   }
 
-
   Future<void> updateToken() async {
     await authRepo.updateToken();
   }
-
 
   String _verificationCode = '';
 
@@ -95,7 +94,6 @@ class AuthController extends GetxController implements GetxService {
     _verificationCode = query;
     update();
   }
-
 
   bool _isActiveRememberMe = false;
 
@@ -118,7 +116,6 @@ class AuthController extends GetxController implements GetxService {
     authRepo.saveUserNumberAndPassword(number, password);
   }
 
-
   String getUserEmail() {
     return authRepo.getUserEmail() ?? "";
   }
@@ -131,14 +128,11 @@ class AuthController extends GetxController implements GetxService {
     return authRepo.clearUserNumberAndPassword();
   }
 
-
   String getUserToken() {
     return authRepo.getUserToken();
   }
 
-
   void initData() {
     _pickedFile = null;
   }
-
 }

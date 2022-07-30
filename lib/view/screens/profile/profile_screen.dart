@@ -1,17 +1,27 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sixvalley_delivery_boy/controller/auth_controller.dart';
+import 'package:sixvalley_delivery_boy/controller/profile_controller.dart';
 import 'package:sixvalley_delivery_boy/controller/splash_controller.dart';
-import 'package:sixvalley_delivery_boy/data/http/utills/fund.dart';
+//import 'package:sixvalley_delivery_boy/data/http/utills/clear_wallet.dart';
+import 'package:sixvalley_delivery_boy/utill/app_constants.dart';
 import 'package:sixvalley_delivery_boy/utill/color_resources.dart';
 import 'package:sixvalley_delivery_boy/utill/dimensions.dart';
 import 'package:sixvalley_delivery_boy/utill/images.dart';
 import 'package:sixvalley_delivery_boy/view/screens/auth/login_screen.dart';
+import 'package:sixvalley_delivery_boy/view/screens/dashboard/dashboard_screen.dart';
+import 'package:sixvalley_delivery_boy/view/screens/home/home_screen.dart';
 import 'package:sixvalley_delivery_boy/view/screens/html/html_viewer_screen.dart';
 import 'package:sixvalley_delivery_boy/view/screens/profile/widget/profile_button.dart';
+import 'package:http/http.dart' as http;
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key key}) : super(key: key);
+  ProfileScreen({Key key}) : super(key: key);
+
+  SharedPreferences sharedPreferences;
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +32,7 @@ class ProfileScreen extends StatelessWidget {
             child: GetBuilder<AuthController>(
               builder: (profileController) {
                 return Column(
+                  //crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Container(
                       padding: EdgeInsets.only(
@@ -83,6 +94,7 @@ class ProfileScreen extends StatelessWidget {
                       padding:
                           const EdgeInsets.all(Dimensions.paddingSizeSmall),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -112,6 +124,18 @@ class ProfileScreen extends StatelessWidget {
                           _userInfoWidget(
                               context: context,
                               text: profileController.profileModel.phone),
+                          const SizedBox(height: 15),
+                          const Text('رصيد المحفظة'),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          GetBuilder<ProfileController>(
+                            //init: ProfileController(),
+                            builder: (controller) => _userInfoWidget(
+                                context: context,
+                                text: profileController.profileModel.wallet
+                                    .toString()),
+                          ),
                           const SizedBox(height: 20),
                           GestureDetector(
                             child: Container(
@@ -132,8 +156,31 @@ class ProfileScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            onTap: () {
-                              fund();
+                            onTap: () async {
+                              bool status = await clear_wallet(
+                                  amount: profileController.profileModel.wallet,
+                                  id: profileController.profileModel.id,
+                                  context: context);
+
+                              //  await clear_wallet(
+                              //     amount: profileController.profileModel.wallet,
+                              //     id: profileController.profileModel.id);
+
+                              if (status) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content: Text('تم ارسال طلب للإدارة'),
+                                        backgroundColor: Colors.green));
+                                profileController.profileModel.wallet = 0;
+                                Get.to(const DashboardScreen(
+                                  pageIndex: 0,
+                                ));
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content: Text('لم يتم ارسال الأموال'),
+                                        backgroundColor: Colors.red));
+                              }
                             },
                           ),
                           ProfileButton(
@@ -197,5 +244,44 @@ class ProfileScreen extends StatelessWidget {
             .copyWith(color: Theme.of(context).focusColor),
       ),
     );
+  }
+
+  Future<bool> clear_wallet({int amount, int id, BuildContext context}) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    print(id);
+    print(amount);
+    log(sharedPreferences.get(AppConstants.token));
+    if (amount != 0) {
+      try {
+        http.Response response = await http.get(
+          Uri.parse(
+              'https://souqadam.com/api/v2/delivery-man/wallet/remove?delivery_man=$id&amount$amount'),
+          headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Authorization':
+                'Bearer ${sharedPreferences.get(AppConstants.token)}'
+          },
+        );
+        log(response.body);
+        if (response.statusCode == 200) {
+          // Map data = jsonDecode(response.body);
+          return true;
+        } else if (response.statusCode == 500) {
+          return false;
+          //
+        }
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text('حدث خطأ ما.. جرب في وقت لاحق'),
+            backgroundColor: Colors.red));
+      }
+      //  throw Exception('status code not 200 it is ${response.statusCode}');
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+            content: Text('رصيدك فارغ'), backgroundColor: Colors.red),
+      );
+      return false;
+    }
   }
 }
