@@ -359,7 +359,8 @@ class OrderDetailsScreen extends StatelessWidget {
                                                                         context)
                                                                     .highlightColor)),
                                                         Text(
-                                                            ' ${orderController.orderDetails[index].qty / orderController.orderDetails[index].qountPieceInKr}',
+                                                            "${(orderController.orderDetails[index].isPiece != null ? orderController.orderDetails[index].qty : (orderController.orderDetails[index].qty / orderController.orderDetails[index].qountPieceInKr))}",
+                                                            //' ${orderController.orderDetails[index].isPiece ? orderController.orderDetails[index].qty:( orderController.orderDetails[index].qty / orderController.orderDetails[index].qountPieceInKr)}',
                                                             style: rubikMedium.copyWith(
                                                                 color: Theme.of(
                                                                         context)
