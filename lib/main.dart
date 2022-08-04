@@ -8,6 +8,7 @@ import 'package:sixvalley_delivery_boy/theme/dark_theme.dart';
 import 'package:sixvalley_delivery_boy/theme/light_theme.dart';
 import 'package:sixvalley_delivery_boy/utill/app_constants.dart';
 import 'package:sixvalley_delivery_boy/utill/messages.dart';
+// ignore: unused_import
 import 'package:sixvalley_delivery_boy/view/screens/auth/login_screen.dart';
 import 'package:sixvalley_delivery_boy/view/screens/splash/splash_screen.dart';
 import 'controller/localization_controller.dart';
@@ -41,25 +42,31 @@ class MyApp extends StatelessWidget {
   const MyApp({Key key, @required this.languages}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ThemeController>(builder: (themeController) {
-      return GetBuilder<LocalizationController>(builder: (localizeController) {
-        return GetBuilder<SplashController>(builder: (splashController) {
-          return GetMaterialApp(
-            title: AppConstants.appName,
-            debugShowCheckedModeBanner: false,
-            navigatorKey: Get.key,
-            theme: themeController.darkTheme ? dark : light,
-            locale: localizeController.locale,
-            translations: Messages(languages: languages),
-            fallbackLocale: Locale(AppConstants.languages[0].languageCode,
-                AppConstants.languages[0].countryCode),
-            // ignore: prefer_const_constructors
-            home: SplashScreen(),
-            defaultTransition: Transition.topLevel,
-            transitionDuration: const Duration(milliseconds: 500),
-          );
-        });
-      });
-    });
+    return GetBuilder<ThemeController>(
+      builder: (themeController) {
+        return GetBuilder<LocalizationController>(
+          builder: (localizeController) {
+            return GetBuilder<SplashController>(
+              builder: (splashController) {
+                return GetMaterialApp(
+                  title: AppConstants.appName,
+                  debugShowCheckedModeBanner: false,
+                  navigatorKey: Get.key,
+                  theme: themeController.darkTheme ? dark : light,
+                  locale: localizeController.locale,
+                  translations: Messages(languages: languages),
+                  fallbackLocale: Locale(AppConstants.languages[0].languageCode,
+                      AppConstants.languages[0].countryCode),
+                  // ignore: prefer_const_constructors
+                  home: SplashScreen(),
+                  defaultTransition: Transition.topLevel,
+                  transitionDuration: const Duration(milliseconds: 500),
+                );
+              },
+            );
+          },
+        );
+      },
+    );
   }
 }

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sixvalley_delivery_boy/data/api/api_checker.dart';
@@ -138,6 +139,8 @@ class OrderController extends GetxController implements GetxService {
   Future updatePaymentStatus({int orderId, String status}) async {
     Response apiResponse =
         await orderRepo.updatePaymentStatus(orderId: orderId, status: status);
+    print("---------------------- Response -----------------------");
+    log(apiResponse.body.toString());
 
     if (apiResponse.statusCode == 200) {
     } else {

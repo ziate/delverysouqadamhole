@@ -335,11 +335,12 @@ class OrderDetailsScreen extends StatelessWidget {
                                                           TextOverflow.ellipsis,
                                                     ),
                                                   ),
-                                                  Text('price'.tr,
-                                                      style: rubikRegular.copyWith(
-                                                          color: Theme.of(
-                                                                  context)
-                                                              .highlightColor)),
+                                                  Text(
+                                                    'price'.tr,
+                                                    style: rubikRegular.copyWith(
+                                                        color: Theme.of(context)
+                                                            .highlightColor),
+                                                  ),
                                                 ],
                                               ),
                                               const SizedBox(
@@ -353,18 +354,20 @@ class OrderDetailsScreen extends StatelessWidget {
                                                     Row(
                                                       children: [
                                                         Text(
-                                                            '${'quantity'.tr}:',
-                                                            style: rubikRegular.copyWith(
-                                                                color: Theme.of(
-                                                                        context)
-                                                                    .highlightColor)),
+                                                          '${'quantity'.tr}:',
+                                                          style: rubikRegular.copyWith(
+                                                              color: Theme.of(
+                                                                      context)
+                                                                  .highlightColor),
+                                                        ),
                                                         Text(
-                                                            "${(orderController.orderDetails[index].isPiece != null ? orderController.orderDetails[index].qty : (orderController.orderDetails[index].qty / orderController.orderDetails[index].qountPieceInKr))}",
-                                                            //' ${orderController.orderDetails[index].isPiece ? orderController.orderDetails[index].qty:( orderController.orderDetails[index].qty / orderController.orderDetails[index].qountPieceInKr)}',
-                                                            style: rubikMedium.copyWith(
-                                                                color: Theme.of(
-                                                                        context)
-                                                                    .primaryColor)),
+                                                          "${(orderController.orderDetails[index].isPiece != null ? orderController.orderDetails[index].qty : (orderController.orderDetails[index].qty / orderController.orderDetails[index].qountPieceInKr))}",
+                                                          //' ${orderController.orderDetails[index].isPiece ? orderController.orderDetails[index].qty:( orderController.orderDetails[index].qty / orderController.orderDetails[index].qountPieceInKr)}',
+                                                          style: rubikMedium.copyWith(
+                                                              color: Theme.of(
+                                                                      context)
+                                                                  .primaryColor),
+                                                        ),
                                                       ],
                                                     ),
                                                     Text(
@@ -411,28 +414,34 @@ class OrderDetailsScreen extends StatelessWidget {
                           Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text('items_price'.tr,
-                                    style: rubikRegular.copyWith(
-                                        fontSize: Dimensions.fontSizeLarge)),
-                                Text(PriceConverter.convertPrice(_itemsPrice),
-                                    style: rubikRegular.copyWith(
-                                        fontSize: Dimensions.fontSizeLarge)),
+                                Text(
+                                  'items_price'.tr,
+                                  style: rubikRegular.copyWith(
+                                      fontSize: Dimensions.fontSizeLarge),
+                                ),
+                                Text(
+                                  PriceConverter.convertPrice(_itemsPrice),
+                                  style: rubikRegular.copyWith(
+                                      fontSize: Dimensions.fontSizeLarge),
+                                ),
                               ]),
                           const SizedBox(height: 10),
 
                           Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text('tax'.tr,
-                                    style: rubikRegular.copyWith(
-                                        fontSize: Dimensions.fontSizeLarge,
-                                        color:
-                                            Theme.of(context).highlightColor)),
-                                Text('(+) ${PriceConverter.convertPrice(_tax)}',
-                                    style: rubikRegular.copyWith(
-                                        fontSize: Dimensions.fontSizeLarge,
-                                        color:
-                                            Theme.of(context).highlightColor)),
+                                Text(
+                                  'tax'.tr,
+                                  style: rubikRegular.copyWith(
+                                      fontSize: Dimensions.fontSizeLarge,
+                                      color: Theme.of(context).highlightColor),
+                                ),
+                                Text(
+                                  '(+) ${PriceConverter.convertPrice(_tax)}',
+                                  style: rubikRegular.copyWith(
+                                      fontSize: Dimensions.fontSizeLarge,
+                                      color: Theme.of(context).highlightColor),
+                                ),
                               ]),
                           const SizedBox(height: 10),
 
@@ -445,16 +454,18 @@ class OrderDetailsScreen extends StatelessWidget {
                           Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text('subtotal'.tr,
-                                    style: rubikMedium.copyWith(
-                                        fontSize: Dimensions.fontSizeLarge,
-                                        color:
-                                            Theme.of(context).highlightColor)),
-                                Text(PriceConverter.convertPrice(_subTotal),
-                                    style: rubikMedium.copyWith(
-                                        fontSize: Dimensions.fontSizeLarge,
-                                        color:
-                                            Theme.of(context).highlightColor)),
+                                Text(
+                                  'subtotal'.tr,
+                                  style: rubikMedium.copyWith(
+                                      fontSize: Dimensions.fontSizeLarge,
+                                      color: Theme.of(context).highlightColor),
+                                ),
+                                Text(
+                                  PriceConverter.convertPrice(_subTotal),
+                                  style: rubikMedium.copyWith(
+                                      fontSize: Dimensions.fontSizeLarge,
+                                      color: Theme.of(context).highlightColor),
+                                ),
                               ]),
                           const SizedBox(height: 10),
 
@@ -467,11 +478,11 @@ class OrderDetailsScreen extends StatelessWidget {
                                         color:
                                             Theme.of(context).highlightColor)),
                                 Text(
-                                    '(-) ${PriceConverter.convertPrice(_discount)}',
-                                    style: rubikRegular.copyWith(
-                                        fontSize: Dimensions.fontSizeLarge,
-                                        color:
-                                            Theme.of(context).highlightColor)),
+                                  '(-) ${PriceConverter.convertPrice(_discount)}',
+                                  style: rubikRegular.copyWith(
+                                      fontSize: Dimensions.fontSizeLarge,
+                                      color: Theme.of(context).highlightColor),
+                                ),
                               ]),
                           const SizedBox(height: 10),
 
@@ -544,8 +555,8 @@ class OrderDetailsScreen extends StatelessWidget {
                                     }),
                               )
                             : const SizedBox.shrink(),
-
-
+              
+              
                         */
                         ],
                       ),
@@ -650,29 +661,33 @@ class OrderDetailsScreen extends StatelessWidget {
                                           Get.find<TrackerController>()
                                               .updateTrackStart(false);
                                           Navigator.of(context).pushReplacement(
-                                              MaterialPageRoute(
-                                                  builder: (_) =>
-                                                      OrderPlaceScreen(
-                                                          orderID: orderModel.id
-                                                              .toString())));
+                                            MaterialPageRoute(
+                                              builder: (_) => OrderPlaceScreen(
+                                                orderID:
+                                                    orderModel.id.toString(),
+                                              ),
+                                            ),
+                                          );
                                         } else {
                                           showDialog(
-                                              context: context,
-                                              barrierDismissible: false,
-                                              builder: (BuildContext context) {
-                                                return Dialog(
-                                                  shape: RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20.0)),
-                                                  child: DeliveryDialog(
-                                                    onTap: () {},
-                                                    index: index,
-                                                    totalPrice: totalPrice,
-                                                    orderModel: orderModel,
-                                                  ),
-                                                );
-                                              });
+                                            context: context,
+                                            barrierDismissible: false,
+                                            builder: (BuildContext context) {
+                                              return Dialog(
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          20.0),
+                                                ),
+                                                child: DeliveryDialog(
+                                                  onTap: () {},
+                                                  index: index,
+                                                  totalPrice: totalPrice,
+                                                  orderModel: orderModel,
+                                                ),
+                                              );
+                                            },
+                                          );
                                         }
                                       },
 
@@ -688,13 +703,14 @@ class OrderDetailsScreen extends StatelessWidget {
                                       ),
                                       dismissThresholds: 0.5,
                                       icon: const Center(
-                                          child: Icon(
-                                        Icons.double_arrow_sharp,
-                                        color: Colors.white,
-                                        size: 20.0,
-                                        semanticLabel:
-                                            'Text to announce in accessibility modes',
-                                      )),
+                                        child: Icon(
+                                          Icons.double_arrow_sharp,
+                                          color: Colors.white,
+                                          size: 20.0,
+                                          semanticLabel:
+                                              'Text to announce in accessibility modes',
+                                        ),
+                                      ),
 
                                       ///Change All the color and size from here.
                                       radius: 10,
@@ -714,8 +730,10 @@ class OrderDetailsScreen extends StatelessWidget {
                 )
               : Center(
                   child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                          Theme.of(context).primaryColor)));
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                        Theme.of(context).primaryColor),
+                  ),
+                );
         },
       ),
     );

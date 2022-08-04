@@ -102,5 +102,6 @@
   "privacy_policy": "Privacy Policy",
   "order_note": "Order Note",
   "address": "Shipping Address",
-  "billing_address": "Billing Address"
+  "billing_address": "Billing Address",
+  "wallet":"Wallet"
 }

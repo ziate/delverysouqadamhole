@@ -100,5 +100,6 @@
   "privacy_policy": "سياسة خاصة",
   "order_note": "مذكرة النظام",
   "address": "عنوان الشحن",
-  "billing_address": "عنوان وصول الفواتير"
+  "billing_address": "عنوان وصول الفواتير",
+  "wallet":"رصيد المحفظة"
 }

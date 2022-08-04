@@ -125,7 +125,7 @@ class ProfileScreen extends StatelessWidget {
                               context: context,
                               text: profileController.profileModel.phone),
                           const SizedBox(height: 15),
-                          const Text('رصيد المحفظة'),
+                          Text('wallet'.tr),
                           const SizedBox(
                             height: 10,
                           ),
